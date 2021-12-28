@@ -32,9 +32,9 @@ def UDPClinet():
     clientSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
     clientSocket.bind((serverName, serverPort))
     print("Client started, listening for offer requests...")
-    for i in range(10):
+   
         
-        modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+    modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
     if ((modifiedMessage[0] == 254) & (modifiedMessage[1] == 237) & (modifiedMessage[2] == 190) & (
             modifiedMessage[3] == 239)):
         port = [modifiedMessage[5], modifiedMessage[6]]
