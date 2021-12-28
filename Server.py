@@ -31,6 +31,7 @@ def UDPServer(interface=Scapy.conf.iface):
             break
 
     MathsGame.prepare_players()
+    print(len(Client_sockets))
     for (x, y) in Client_sockets:
         gamethread = threading.Thread(target=MathsGame.game, args=(x, y)).start()
     time.sleep(10)
@@ -38,7 +39,7 @@ def UDPServer(interface=Scapy.conf.iface):
     print(msg)
     for (a, b) in Client_sockets:
         a.send(msg.encode())
-    time.sleep(2)
+    time.sleep(3)
     serverSocket.close()
     for (a, b) in Client_sockets:
         a.close()

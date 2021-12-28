@@ -1,7 +1,8 @@
 import socket
 from socket import *
 import time
-import msvcrt
+import getch
+import keyboard
 
 
 serverPort_tcp = 0
@@ -27,10 +28,13 @@ def UDPClinet():
     serverName = ''
     serverPort = 13117
     clientSocket = socket(AF_INET, SOCK_DGRAM)
+    clientSocket.setsockopt(SOL_SOCKET,SO_REUSEPORT , 1)
     clientSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
     clientSocket.bind((serverName, serverPort))
     print("Client started, listening for offer requests...")
-    modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+    for i in range(10):
+        
+        modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
     if ((modifiedMessage[0] == 254) & (modifiedMessage[1] == 237) & (modifiedMessage[2] == 190) & (
             modifiedMessage[3] == 239)):
         port = [modifiedMessage[5], modifiedMessage[6]]
@@ -61,16 +65,19 @@ def TCPClinet(server_ip, server_port):
     print(modifiedSentence.decode())
     end = time.time() + 10
     flag = True
-    while True:
-        if msvcrt.kbhit():
-            char = msvcrt.getch()
-            pKey = char.decode('ASCII')
-            print(pKey.encode())
-            try:
-                clientSocket.send(pKey.encode())
-            except:
-                flag = False
-            break
+    while flag:
+        
+
+       # char = getch.getch():
+        
+        
+        try:
+            keyboard.on_press_key(x, lambda _:clientSocket.send(x))
+            flag = False
+            #clientSocket.send(char)
+        except:
+            flag = False
+        break
 
     msg = clientSocket.recv(1024)
 

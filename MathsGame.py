@@ -66,10 +66,10 @@ def game(connectionSocket, addr):
     global winner
     msg = "Welcome to Quick Maths.\n"
     pl1 = player1[0]
-    msg = msg + bcolors.OKBLUE + "Player 1:" + pl1[0] + "\n"
+    msg = msg + bcolors.OKBLUE + "Player 1:" + pl1 + "\n"
 
     pl2 = player2[0]
-    msg = msg + bcolors.FAIL + "Player 2:" + pl2[0] + "\n"
+    msg = msg + bcolors.FAIL + "Player 2:" + pl2 + "\n"
     msg = msg + bcolors.WARNING + "Please answer the following question as fast as you can:\n"
 
     answer = maths_calc[op](x, y)
@@ -104,9 +104,9 @@ def print_wins():
     global y
     global op
     global eq
-    ans = maths_calc[op](x, y)
+    ans = maths_calc[op](int(x), int(y))
 
-    msg = "Game over!\nThe correct answer was " + ans + "!\n"
+    msg = "Game over!\nThe correct answer was " + str(ans) + "!\n"
 
     if winner == 1:
         player = player1[0]
