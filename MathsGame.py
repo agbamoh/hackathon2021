@@ -64,7 +64,7 @@ def game(connectionSocket, addr):
     global player2
     global player1
     global winner
-    x, y, op, eq = generate_math_equation()
+    
     msg = "Welcome to Quick Maths.\n"
     pl1 = player1[0]
     msg = msg + bcolors.OKBLUE + "Player 1:" + pl1 + "\n"
@@ -122,9 +122,14 @@ def print_wins():
 def prepare_players():
     global player1
     global player2
+    global x
+    global y
+    global op
+    global eq
     while True:
         if len(arr) >1:
             break
 
     player1 = arr[0]
     player2 = arr[1]
+    x, y, op, eq = generate_math_equation()
