@@ -35,8 +35,9 @@ def UDPClinet():
    
         
     modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
-    if ((modifiedMessage[0] == 254) & (modifiedMessage[1] == 237) & (modifiedMessage[2] == 190) & (
-            modifiedMessage[3] == 239)):
+    #magic cookies
+    if ((modifiedMessage[0] == 171) & (modifiedMessage[1] == 205) & (modifiedMessage[2] == 220) & (
+            modifiedMessage[3] == 186)):
         port = [modifiedMessage[5], modifiedMessage[6]]
         serverPort_tcp = int.from_bytes(port, 'little')
         print(bcolors.OKGREEN + "Received offer from " + serverAddress[0] + ",attempting to connect...")
