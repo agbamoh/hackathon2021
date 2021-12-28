@@ -26,7 +26,7 @@ class bcolors:
 def UDPClinet():
     global serverPort_tcp
     serverName = ''
-    serverPort = 13117
+    serverPort = 13118
     clientSocket = socket(AF_INET, SOCK_DGRAM)
     clientSocket.setsockopt(SOL_SOCKET,SO_REUSEPORT , 1)
     clientSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
@@ -35,10 +35,11 @@ def UDPClinet():
    
         
     modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
-    if ((modifiedMessage[0] == 254) & (modifiedMessage[1] == 237) & (modifiedMessage[2] == 190) & (
-            modifiedMessage[3] == 239)):
+    if ((modifiedMessage[0] == 171) & (modifiedMessage[1] == 205) & (modifiedMessage[2] == 220) & (
+            modifiedMessage[3] == 186)):
         port = [modifiedMessage[5], modifiedMessage[6]]
         serverPort_tcp = int.from_bytes(port, 'little')
+        print(serverPort_tcp)
         print(bcolors.OKGREEN + "Received offer from " + serverAddress[0] + ",attempting to connect...")
         clientSocket.close()
         return serverAddress[0], serverPort_tcp
