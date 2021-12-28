@@ -26,7 +26,7 @@ class bcolors:
 def UDPClinet():
     global serverPort_tcp
     serverName = ''
-    serverPort = 13118
+    serverPort = 13117
     clientSocket = socket(AF_INET, SOCK_DGRAM)
     clientSocket.setsockopt(SOL_SOCKET,SO_REUSEPORT , 1)
     clientSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)

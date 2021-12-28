@@ -14,7 +14,7 @@ def get_ip_address(interface):
 # UDP Server Side
 # This function starts the udp server, the udp server and disconnect after 10 seconeds.
 def UDPServer(interface=Scapy.conf.iface):
-    serverport = 13118
+    serverport = 13117
     serverSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)
     serverSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
     TCPPort = TCPServer(interface)
