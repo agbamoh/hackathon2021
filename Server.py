@@ -39,7 +39,7 @@ def UDPServer(interface=Scapy.conf.iface):
     print(msg)
     for (a, b) in Client_sockets:
         a.send(msg.encode())
-    time.sleep(3)
+    #time.sleep(2)
     serverSocket.close()
     for (a, b) in Client_sockets:
         a.close()

@@ -25,7 +25,7 @@ def generate_math_equation():
     return a, b, opr, equation_str
 
 
-x, y, op, eq = generate_math_equation()
+
 
 arr = []
 player1 = ()
@@ -64,6 +64,7 @@ def game(connectionSocket, addr):
     global player2
     global player1
     global winner
+    x, y, op, eq = generate_math_equation()
     msg = "Welcome to Quick Maths.\n"
     pl1 = player1[0]
     msg = msg + bcolors.OKBLUE + "Player 1:" + pl1 + "\n"
@@ -72,7 +73,7 @@ def game(connectionSocket, addr):
     msg = msg + bcolors.FAIL + "Player 2:" + pl2 + "\n"
     msg = msg + bcolors.WARNING + "Please answer the following question as fast as you can:\n"
 
-    answer = maths_calc[op](x, y)
+    answer = maths_calc[op](int(x), int(y))
     msg = msg + "How much is " + eq + "\n"
     try:
         connectionSocket.send(msg.encode())
@@ -113,6 +114,7 @@ def print_wins():
     else:
         player = player2[0]
     msg += "Congratulations to the winner: " + player
+    arr.clear()
     return msg
 
 
