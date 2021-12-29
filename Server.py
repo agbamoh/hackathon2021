@@ -20,7 +20,6 @@ def UDPServer(interface=Scapy.conf.iface):
     TCPPort = TCPServer(interface)
     print(TCPPort)
     message_bytes = []
-    
     message_bytes.extend(bytes.fromhex("abcddcba"))
     message_bytes.extend([2])
     message_bytes.extend(TCPPort.to_bytes(2, 'little'))
